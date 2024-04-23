@@ -24,4 +24,9 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+    protected $routeMiddleware = [
+        'auth.daftar' => \App\Http\Middleware\AuthenticateDaftar::class,
+        'daftar' => \App\Http\Middleware\DaftarMiddleware::class,
+    ];
+
 }

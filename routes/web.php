@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\HasilController;
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\DaftarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [WelcomeController::class, 'index'])->name('home');
-Route::post('/daftar', [WelcomeController::class, 'create'])->name('beasiswa.create');
+Route::get('/', [DaftarController::class, 'index'])->name('daftar');
+Route::post('/daftar', [DaftarController::class, 'create'])->name('beasiswa.create');
 Route::get('/daftar/hasil', [HasilController::class, 'index'])->name('hasil');
+Route::get('/beasiswa', [BeasiswaController::class, 'index'])->name('beasiswa');
+
