@@ -27,7 +27,6 @@
                 <a class="nav-item nav-link active" href="{{route('beasiswa')}}">Pilihan Beasiswa</a>
                 <a class="nav-item nav-link" href="{{ route('daftar') }}">Daftar</a>
                 <a class="nav-item nav-link" href="{{ route('pendaftar') }}">Pendaftar Lainnya</a>
-
             </div>
         </div>
     </nav>
@@ -83,6 +82,9 @@
                                     style="cursor: not-allowed; background-color: lightgray" class="form-select"
                                     name="pilihan_beasiswa" readonly>
                                     <option value="0" onclick="cantCant()">IPK Belum Sesuai</option>
+                                    <script>
+                                         alert('Kriteria Beasiswa Belum terpenuhi')
+                                    </script>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -93,6 +95,9 @@
                                     readonly>
                             </div>
                         @elseif ($ipk_random >= 3)
+                        <script>
+                            alert('Kriteria Beasiswa Terpenuhi')
+                       </script>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Pilihan Beasiswa</label>
                                 <select id="pilihan_beasiswa" class="form-select" name="pilihan_beasiswa">
@@ -118,12 +123,9 @@
                             @endif
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 </body>
@@ -144,6 +146,7 @@
             pilihanBeasiswa.removeAttribute('required');
         } else {
             pilihanBeasiswa.removeAttribute('readonly');
+            window.alert('Kriteria Beasiswa Terpenuhi')
             pilihanBeasiswa.setAttribute('required', 'required');
         }
     });

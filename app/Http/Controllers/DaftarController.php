@@ -14,19 +14,13 @@ class DaftarController extends Controller
        $daftar = Daftar::all();
        $ipk_random = rand(20, 40) / 10;
 
-
-        return view('daftar', compact('beasiswa', 'daftar', 'ipk_random'));
+       return view('daftar', compact('beasiswa', 'daftar', 'ipk_random'));
     }
 
     public function create(Request $request)
-
     {
-
         try {
-
-
             $record = new Daftar();
-
         // Populate the model with the validated data
         $record->nama = $request->nama;
         $record->email = $request->email;
@@ -44,14 +38,11 @@ class DaftarController extends Controller
         } else {
             $record->upload = 'Tidak Masuk Kreteria';
         }
-
         $record->save();
-
             // Redirect the user after successful submission
         return redirect()->route('hasil', ['id' => $record->id])->with('message', 'Anda Berhasil Mendaftar');
-
         } catch (\Exception $e) {
-            dd($e->getMessage()); 
+            dd($e->getMessage());
         }
 
     }
