@@ -94,7 +94,7 @@
                                 <label for="file" class="form-label fs-5 fw-bold">Uploaded Berkas :</label>
                                 <div class="d-flex align-items-center">
                                     @if($daftar->upload != 'Tidak Masuk Kreteria')
-                                        <a href="{{ asset('storage/' . $daftar->upload) }}" download>{{ basename($daftar->upload) }}</a>
+                                        <a href="{{ asset( $daftar->upload) }}" download>{{ basename($daftar->upload) }}</a>
                                     @else
                                         <p>{{ $daftar->upload }}</p>
                                     @endif

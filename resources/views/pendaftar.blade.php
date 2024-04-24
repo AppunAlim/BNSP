@@ -80,7 +80,7 @@
                 <td>{{ $c->status_pengajuan }}</td>
                 <td>
                     @if($c->upload != 'Tidak Masuk Kreteria')
-                        <a href="{{ asset('public/uploads' . $c->upload) }}" download target="_blank">{{ basename($c->upload) }}</a>
+                        <a href="{{ asset($c->upload) }}" download target="_blank">{{ basename($c->upload) }}</a>
                     @else
                         <p>{{ $c->upload }}</p>
                     @endif
