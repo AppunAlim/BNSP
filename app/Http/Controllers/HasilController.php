@@ -20,7 +20,6 @@ public function index($id)
         return redirect()->route('hasilLot')->with('error', 'Daftar entry not found');
     }
 
-    // Pass the single $daftar object to the view
     return view('hasil', compact('daftar'));
 }
 

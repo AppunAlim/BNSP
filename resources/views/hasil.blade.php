@@ -109,30 +109,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 </body>
-<script>
-    function goBack() {
-        window.location.href = document.referrer;
-    }
-    function downloadFile(url) {
-        // Membuat elemen <a> baru
-        var link = document.createElement('a');
-        link.href = url;
-        // Menyembunyikan elemen <a> agar tidak terlihat di halaman
-        link.style.display = 'none';
-        // Menambahkan atribut download agar file diunduh saat di-klik
-        link.setAttribute('download', '');
-        // Menambahkan elemen <a> ke dalam DOM (Document Object Model)
-        document.body.appendChild(link);
-        // Memulai proses unduhan
-        link.click();
-        // Menghapus elemen <a> dari DOM setelah proses unduhan selesai
-        document.body.removeChild(link);
-    }
 
-    function cantClick() {
-        event.preventDefault();
-    }
-
-</script>
 
 </html>

@@ -25,7 +25,6 @@ class DaftarController extends Controller
         try {
 
 
-            // Create a new instance of your model and populate it with the validated data
             $record = new Daftar();
 
         // Populate the model with the validated data
@@ -46,14 +45,13 @@ class DaftarController extends Controller
             $record->upload = 'Tidak Masuk Kreteria';
         }
 
-        // Save the record to the database
         $record->save();
 
             // Redirect the user after successful submission
         return redirect()->route('hasil', ['id' => $record->id])->with('message', 'Anda Berhasil Mendaftar');
 
         } catch (\Exception $e) {
-            dd($e->getMessage()); // Display the exception message
+            dd($e->getMessage()); 
         }
 
     }

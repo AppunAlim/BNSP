@@ -47,7 +47,6 @@
                         </div>
                     @endif
 
-                    <!-- Display the table -->
 <table id="listTable" class="table table-striped table-bordered rounded box-shadow bg-light p-2">
     <thead>
         <tr>
@@ -63,7 +62,7 @@
         </tr>
     </thead>
     <tbody>
-        @php $i = ($daftar->currentPage() - 1) * $daftar->perPage() @endphp <!-- Calculate starting index -->
+        @php $i = ($daftar->currentPage() - 1) * $daftar->perPage() @endphp
         @foreach ($daftar as $c)
             <tr>
                 <th scope="row">{{ ++$i }}</th>

@@ -152,9 +152,6 @@
         event.preventDefault();
     }
 
-    // function ipk() {
-    //     return Math.random() * 2 + 2;
-    // }
 </script>
 
 
