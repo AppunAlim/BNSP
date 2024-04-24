@@ -12,4 +12,8 @@ class Beasiswa extends Model
     protected $fillable = [
         'nama_beasiswa'
     ];
+
+    public function daftar() {
+        return $this->hasMany(Daftar::class, 'pilihan_beasiswa');
+    }
 }

@@ -15,61 +15,46 @@
 
 </head>
 
-<body class="antialiased">
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-12">
-                <h1 class="mb-4">Pendaftar Beasiswa</h1>
-                <button class="btn btn-primary mb-4 text-white"><a href="/" class="text-white"
-                        style="text-decoration: none;">back</a></button>
-            </div>
-            <div style="col-lg-4">
-                <div class="table-responsive">
-                    @if ($daftar->isEmpty())
-                        <div class="alert alert-danger" role="alert">
-                            Anda belum terdaftar untuk beasiswa. Silakan <a href="{{ route('daftar') }}">daftar</a>.
-                        </div>
-                    @else
-                        <table id="listTable" class="table table-striped rounded box-shadow bg-light p-2">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">No HP</th>
-                                    <th scope="col">Semester</th>
-                                    <th scope="col">IPK</th>
-                                    <th scope="col">Pilihan Beasiswa</th>
-                                    <th scope="col">Berkas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i = 0 @endphp <!-- Define $i variable -->
-                                @foreach ($daftar as $c)
-                                    <tr>
-                                        <th scope="row">{{ ++$i }}</th>
-                                        <td>{{ $c->nama }}</td>
-                                        <td>{{ $c->email }}</td>
-                                        <td>{{ $c->no_hp }}</td>
-                                        <td>{{ $c->semester }}</td>
-                                        <td>{{ $c->ipk }}</td>
-                                        <td>{{ $c->pilihan_beasiswa }}</td>
-                                        <td>
-                                            <a href="{{ asset('storage/' . $c->upload) }}"
-                                                download="{{ $c->upload }}">Download</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
+<body class="antialiased" style="background-color:rgb(118, 118, 118) ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ml-5 sticky-top">
+        <a class="navbar-brand ms-4" href="#">Pendaftaran Beasiswa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{route('beasiswa')}}">Pilihan Beasiswa</a>
+                <a class="nav-item nav-link" href="{{ route('daftar') }}">Daftar</a>
+                <a class="nav-item nav-link" href="{{ route('pendaftar') }}">Pendaftar Lainnya</a>
+
             </div>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </nav>
+    <h1 class="d-flex justify-content-center align-item-center mt-4 text-white">Informasi Mengenai Beasiswa</h1>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row justify-content-around align-items-around">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <a href="{{route('akademik')}}" class="nav-item nav-link">
+                <div class="shadow mx-3 p-3 rounded-3 fs-5 text-center" style="background-color: lightgray; width: 350px">
+                    Beasiswa Akademik
+                </div>
+            </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <a href="{{route('nonAkademik')}}" class="nav-item nav-link">
+                <div class="shadwo mx-6 p-3 rounded-3 fs-5 text-center" style="background-color: lightgray; width: 400px">
+                    Beasiswa Non Akademik
+                </div>
+            </a>
+            </div>
+        </div>
     </div>
+
+
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function goBack() {
         window.location.href = document.referrer;

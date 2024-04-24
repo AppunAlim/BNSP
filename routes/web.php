@@ -20,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [DaftarController::class, 'index'])->name('daftar');
+Route::get('/daftar', [DaftarController::class, 'index'])->name('daftar');
 Route::post('/daftar', [DaftarController::class, 'create'])->name('beasiswa.create');
-Route::get('/daftar/hasil', [HasilController::class, 'index'])->name('hasil');
-Route::get('/beasiswa', [BeasiswaController::class, 'index'])->name('beasiswa');
+Route::get('/daftar/hasil/{id}', [HasilController::class, 'index'])->name('hasil');
+Route::get('/daftar/hasil', [HasilController::class, 'show'])->name('pendaftar');
+Route::get('/', [BeasiswaController::class, 'index'])->name('beasiswa');
+Route::get('/beasiswa/akademik', [BeasiswaController::class, 'akademik'])->name('akademik');
+Route::get('/beasiswa/nonakademik', [BeasiswaController::class, 'nonAkademik'])->name('nonAkademik');
 

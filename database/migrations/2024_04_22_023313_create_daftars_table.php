@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email');
-            $table->varchar('no_hp');
+            $table->integer('no_hp');
             $table->string('semester');
             $table->float('ipk');
             $table->string('pilihan_beasiswa');

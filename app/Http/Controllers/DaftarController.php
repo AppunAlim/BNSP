@@ -50,7 +50,7 @@ class DaftarController extends Controller
         $record->save();
 
             // Redirect the user after successful submission
-            return redirect()->route('hasil')->with('message', 'Anda Berhasil Mendaftar');
+        return redirect()->route('hasil', ['id' => $record->id])->with('message', 'Anda Berhasil Mendaftar');
 
         } catch (\Exception $e) {
             dd($e->getMessage()); // Display the exception message

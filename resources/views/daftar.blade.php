@@ -16,7 +16,7 @@
 </head>
 
 <body class="antialiased bg-secondary bg:dotted">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ml-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ml-5 sticky-top">
         <a class="navbar-brand ms-4" href="#">Pendaftaran Beasiswa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +24,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Pilihan Beasiswa</a>
+                <a class="nav-item nav-link active" href="{{route('beasiswa')}}">Pilihan Beasiswa</a>
                 <a class="nav-item nav-link" href="{{ route('daftar') }}">Daftar</a>
-                <a class="nav-item nav-link" href="{{ route('hasil') }}">Hasil</a>
+                <a class="nav-item nav-link" href="{{ route('pendaftar') }}">Pendaftar Lainnya</a>
+
             </div>
         </div>
     </nav>
@@ -84,7 +85,7 @@
                                     <option value="0" onclick="cantCant()">IPK Belum Sesuai</option>
                                 </select>
                             </div>
-                            <div class="col-lg-3 mb-2">
+                            <div class="mb-3">
                                 <label for="file" class="form-label">Upload Berkas</label>
                                 <input type="file" class="form-control"
                                     style="cursor: not-allowed; background-color: lightgray"
@@ -100,14 +101,13 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-3 mb-2">
+                            <div class="mb-3">
                                 <label for="file" class="form-label">Upload Berkas</label>
                                 <input type="file" class="form-control" name="upload" id="upload" required>
                             </div>
                         @endif
 
-
-                        <div class="col-lg-3 mt-4">
+                        <div class="col-lg-3 mb-2 mt-4">
                             <button type="button" class="btn btn-danger" onclick="resetForm()">
                                 Cancel
                             </button>
@@ -129,7 +129,7 @@
 </body>
 <script>
     function resetForm() {
-        document.getElementById("myForm").reset(); // Replace "myForm" with the ID of your form
+        document.getElementById("myForm").reset();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -141,10 +141,10 @@
 
         if (ipkPengguna < 3.00) {
             pilihanBeasiswa.setAttribute('readonly', 'readonly');
-            pilihanBeasiswa.removeAttribute('required'); // Remove the required attribute
+            pilihanBeasiswa.removeAttribute('required');
         } else {
             pilihanBeasiswa.removeAttribute('readonly');
-            pilihanBeasiswa.setAttribute('required', 'required'); // Add the required attribute
+            pilihanBeasiswa.setAttribute('required', 'required');
         }
     });
 

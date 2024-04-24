@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="antialiased">
+<body class="antialiased" style="background-color: lightgray">
     <nav class="navbar navbar-expand-lg navbar-light bg-light ml-5 sticky-top">
         <a class="navbar-brand ms-4" href="#">Pendaftaran Beasiswa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -24,74 +24,85 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Pilihan Beasiswa</a>
+                <a class="nav-item nav-link active" href="{{route('beasiswa')}}">Pilihan Beasiswa</a>
                 <a class="nav-item nav-link" href="{{ route('daftar') }}">Daftar</a>
-                <a class="nav-item nav-link" href="{{ route('hasil') }}">Hasil</a>
+                <a class="nav-item nav-link" href="{{ route('pendaftar') }}">Pendaftar Lainnya</a>
+
             </div>
         </div>
     </nav>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-12">
-                <h1 class="mb-4">Pendaftar Beasiswa</h1>
-                <button class="btn btn-primary mb-4 text-white"><a href="/" class="text-white"
-                        style="text-decoration: none;">back</a></button>
-            </div>
             <div style="col-lg-4">
-                <div class="table-responsive">
+                <di v class="table-responsive">
                     @if (session('message'))
-                        <div class="bg-primary p-5">
+                        <div class="bg-info p-5">
                             <div class="header-title">
-                                <h1 class="index-rejected-header-title-text">{{ session('message') }}
+                                <h1 class="index-rejected-header-title-text text-white">{{ session('message') }}
                                 </h1>
-                                <h5 class="index-rejected-header-title-sub">SILAHKAN TUNGGU VERFIKASI</h5>
                             </div>
                         </div>
                     @endif
-                    <table id="listTable" class="table table-striped table-bordered rounded box-shadow bg-light p-2">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">No HP</th>
-                                <th scope="col">Semester</th>
-                                <th scope="col">IPK</th>
-                                <th scope="col">Pilihan Beasiswa</th>
-                                <th scope="col">Status Pengajuan</th>
-                                <th scope="col">Berkas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php $i = 0 @endphp <!-- Define $i variable -->
-                            @foreach ($daftar as $c)
-                                <tr>
-                                    <th scope="row">{{ ++$i }}</th>
-                                    <td>{{ $c->nama }}</td>
-                                    <td>{{ $c->email }}</td>
-                                    <td>{{ $c->no_hp }}</td>
-                                    <td>{{ $c->semester }}</td>
-                                    <td>{{ $c->ipk }}</td>
-                                    @foreach ($beasiswa as $b)
-                                        @if ($c->pilihan_beasiswa == $b->id)
-                                            <td>{{ $b->nama_beasiswa }}</td>
-                                        @endif
-                                    @endforeach
-                                    <td>{{ $c->status_pengajuan }}</td>
-                                    {{-- @if ($c->status_pengajuan == 'Diterima')
-                                        <td><span class="badge" style="background-color:#00ff2a">Diterima</span></td>
-                                    @elseif ($c->status_pengajuan == 'Belum Diverifikasi')
-                                        <td><span class="badge" style="background-color:#e1ff00">Belum Diverifikasi</span></td>
-                                    @endif --}}
-                                    <td>
-                                        <a href="{{ asset('storage/' . $c->upload) }}"
-                                            download="{{ $c->upload }}">Download</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+
+                    <form id="myForm" action="{{ route('hasil', ['id' => $daftar->id]) }}" enctype="multipart/form-data" method="get" class="shadow p-3 mb-2 bg-light rounded">
+                        <div class="text-center fw-bold fs-4 mb-2">Data Anda</div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <label for="nama" class="form-label fs-5 fw-bold">Nama :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->nama }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="email" class="form-label fs-5 fw-bold">Email :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->email }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="no_hp" class="form-label fs-5 fw-bold">No HP :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->no_hp }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="semester" class="form-label fs-5 fw-bold">Semester :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->semester }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="exampleInputPassword1" class="form-label fs-5 fw-bold">IPK Terakhir :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->ipk }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="exampleInputPassword1" class="form-label fs-5 fw-bold">Status Pengajuan :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->status_pengajuan }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="exampleInputPassword1" class="form-label fs-5 fw-bold">Pilihan Beasiswa :</label>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">{{ $daftar->beasiswa->nama_beasiswa }}</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="file" class="form-label fs-5 fw-bold">Uploaded Berkas :</label>
+                                <div class="d-flex align-items-center">
+                                    @if($daftar->upload != 'Tidak Masuk Kreteria')
+                                        <a href="{{ asset('storage/' . $daftar->upload) }}" download>{{ basename($daftar->upload) }}</a>
+                                    @else
+                                        <p>{{ $daftar->upload }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
             </div>
         </div>
 
@@ -102,6 +113,26 @@
     function goBack() {
         window.location.href = document.referrer;
     }
+    function downloadFile(url) {
+        // Membuat elemen <a> baru
+        var link = document.createElement('a');
+        link.href = url;
+        // Menyembunyikan elemen <a> agar tidak terlihat di halaman
+        link.style.display = 'none';
+        // Menambahkan atribut download agar file diunduh saat di-klik
+        link.setAttribute('download', '');
+        // Menambahkan elemen <a> ke dalam DOM (Document Object Model)
+        document.body.appendChild(link);
+        // Memulai proses unduhan
+        link.click();
+        // Menghapus elemen <a> dari DOM setelah proses unduhan selesai
+        document.body.removeChild(link);
+    }
+
+    function cantClick() {
+        event.preventDefault();
+    }
+
 </script>
 
 </html>

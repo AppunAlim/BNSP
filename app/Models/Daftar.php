@@ -19,4 +19,10 @@ class Daftar extends Model
         'status_pengajuan',
         'upload'
     ];
+
+    public function beasiswa()
+{
+    return $this->belongsTo(Beasiswa::class,'pilihan_beasiswa');
+}
+
 }
